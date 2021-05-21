@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import BubblePage from "./components/BubblePage";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";

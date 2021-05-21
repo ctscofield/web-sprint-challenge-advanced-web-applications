@@ -1,6 +1,5 @@
-import Axios from "axios";
 import React, { useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { axiosWithAuth } from "./../helpers/axiosWithAuth";
 import Color from "./Color";
 import EditMenu from "./EditMenu";
@@ -15,7 +14,6 @@ const ColorList = ({ colors, updateColors }) => {
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
   const { id } = useParams();
-  const { push } = useHistory();
 
 
   const editColor = color => {
@@ -48,9 +46,10 @@ const ColorList = ({ colors, updateColors }) => {
         const noMoreColor = colors.filter((obj) => {
           return obj.id !== color.id;
         })
-        .catch(err => {
-          console.log(err);
-        })
+        updateColors(noMoreColor);
+      })
+      .catch(err => {
+        console.log(err);
       })
   };
 
