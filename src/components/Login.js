@@ -1,5 +1,5 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { axiosWithAuth } from "./../helpers/axiosWithAuth";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 const Login = () => {
@@ -10,7 +10,6 @@ const Login = () => {
     username: "",
     password: "",
   });
-  const [error, setError] = useState("");
   const { push } = useHistory();
 
   const handleChange = (e) => {
@@ -23,8 +22,8 @@ const Login = () => {
 
   const login = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:5000/api/login", credentials)
+    axiosWithAuth()
+      .post("/api/login", credentials)
       .then(res => {
       console.log(res);
       setError("");
@@ -36,8 +35,14 @@ const Login = () => {
         setError("incorrect Username or Password");
       })
   }
+
+  useEffect(()=>{
+    // make a post request to retrieve a token from the api
+    // when you have handled the token, navigate to the BubblePage route
+  });
   
-  
+  const [error, setError] = useState("");
+
   //replace with error state
 
   return (
